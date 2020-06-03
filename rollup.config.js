@@ -41,6 +41,11 @@ module.exports = [
         file: './dist/index.mjs',
         format: 'es',
       },
+      {
+        file: './dist/index.js',
+        format: 'iife',
+        name: 'Randomless',
+      },
     ],
   },
 ].map((x) => ({
