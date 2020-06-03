@@ -5,28 +5,28 @@ module.exports = [
   {
     input: './src/grid.js',
     output: {
-      file: './grid.cjs',
+      file: './grid.js',
       format: 'cjs',
     },
   },
   {
     input: './src/picker.js',
     output: {
-      file: './picker.cjs',
+      file: './picker.js',
       format: 'cjs',
     },
   },
   {
     input: './src/numbers.js',
     output: {
-      file: './numbers.cjs',
+      file: './numbers.js',
       format: 'cjs',
     },
   },
   {
     input: './src/sequence.js',
     output: {
-      file: './sequence.cjs',
+      file: './sequence.js',
       format: 'cjs',
     },
   },

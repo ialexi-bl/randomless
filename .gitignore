@@ -1,6 +1,6 @@
 node_modules
 dist
-/numbers.cjs
-/picker.cjs
-/sequence.cjs
-/grid.cjs
+/sequence.js
+/numbers.js
+/picker.js
+/grid.js
