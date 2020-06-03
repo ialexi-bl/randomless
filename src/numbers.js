@@ -5,7 +5,7 @@
  * @param {number|undefined} min - Lower bound
  * @param {number|undefined} max - Upper bound
  */
-export default function getNumbers(count, min, max) {
+export default function getNumbers(count, min = 0, max = 1) {
   if (typeof min !== 'undefined' && typeof max === 'undefined') {
     max = min
     min = 0
