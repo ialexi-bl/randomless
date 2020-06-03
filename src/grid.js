@@ -7,11 +7,11 @@ import { randomless, maxIndex } from './util'
  * @param {number[]} dims - Dimensions of the array
  */
 export default function grid(count, dims) {
-  let options
-  if (typeof count === 'object') {
-    options = Object.assign({}, defaults, count)
-  } else {
-    options = { count, dims }
+  if (typeof count != 'number') {
+    throw new Error('`count` must be a number')
+  }
+  if (!Array.isArray(dims) || dims.length == 0) {
+    throw new Error('`dims` must be an array of one or more numeric elements')
   }
 
   const grid = createEmptyGrid(dims)
@@ -41,7 +41,7 @@ export default function grid(count, dims) {
     newDims[dim] = dims[dim] - newDims[dim]
     distribute(count - firstCount, newDims, newStart)
   }
-  distribute(options.count, options.dims, createEmptyGrid([dims.length]))
+  distribute(count, dims, createEmptyGrid([dims.length]))
 
   return grid
 }
