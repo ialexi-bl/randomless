@@ -21,9 +21,9 @@ npm i --save randomless
 Use it in your code
 
 ```js
-const Randomless = require('randomless')
+const randomless = require('randomless')
 // or
-import Randomless from 'randomless'
+import randomless from 'randomless'
 ```
 
 You can also import individual functions
@@ -38,45 +38,58 @@ import Picker from 'randomless/picker'
 ## Functions
 
 - ```ts
-  Randomless.getNumbers(count: number): number[]
-  Randomless.getNumbers(count: number, max: number): number[]
-  Randomless.getNumbers(count: number, min: number, max: number): number[]
+  randomless.getNumbers(count: number): number[]
+  randomless.getNumbers(count: number, max: number): number[]
+  randomless.getNumbers(count: number, min: number, max: number): number[]
   ```
 
-  Produces an array of length `count` of random(less) numbers between `min` (inclusive, default `0`) and `max` (not inclusive, default `1`). Numbers will be distributed more or less evenly around the range.
+  Produces an array of length `count` of random(less) numbers between `min` (inclusive, default 0) and `max` (not inclusive, default 1). Numbers will be distributed more or less evenly around the range. **Array is guaranteed to be sorted**
 
-  ### Comparison
+  **Comparison**
+
+  "Truly" random numbers
 
   ```js
-  // "Truly" random numbers
   console.log(
-    [...Array(5)].map(() => Math.floor(Math.random() * 20 * 100) / 100)
+    // Creating an array of 5 elements and filling it with
+    // numbers from 0 to 20 and rounding to two decimal digits
+    [...Array(5)].map(() => Math.floor(Math.random() * 20 * 100) / 100).sort()
   )
-  // [19.4, 6.81, 13.22, 17.33, 19.84]
+  // [6.81, 13.22, 17.33, 19.4, 19.84]
+  ```
 
-  // Randomless numbers
+  Randomless numbers
+
+  ```js
   console.log(
-    Randomless.getNumbers(5, 20).map((n) => Math.floor(n * 100) / 100)
+    // Also rounding to two decimal digits
+    randomless.getNumbers(5, 20).map((n) => Math.floor(n * 100) / 100)
   )
   // [1.71, 6.09, 9.16, 12.69, 18.7]
   ```
 
 - ```ts
-  Randomless.getGrid(count: number, dimensions: number[]): number[]
+  randomless.getGrid(count: number, dimensions: number[]): number[]
   ```
 
   Produces a grid with any amount of dimensions that is filled with zeros and contains an amount of ones, specified by `count`, that are distributed random(less)ly around it.
 
-  ### Comparison
+  **Comparison**
+
+  In this example I generate 2 grids, where zeros and ones are represented as '—' and '\*' symbols respectively.
+
+  "Truly" random grid
 
   ```js
-  // "Truly" random grid
+  // Creating 8x30 array, filled with '—'
   const grid = [...Array(8)].map(() => [...Array(30)].fill('—'))
+  // Randomly placing asteriks around
   for (let i = 0; i < 15; i++) {
     const row = Math.floor(Math.random() * 8)
     const col = Math.floor(Math.random() * 30)
     grid[row][col] = '*'
   }
+  // Transforming array into a string
   console.log(grid.map((row) => row.join('')).join('\n'))
   /*
   ——*—————————*————*————————————
@@ -88,10 +101,14 @@ import Picker from 'randomless/picker'
   —————————*————————————————————
   ——————————*————————————————*——
   */
+  ```
 
-  // Randomless grid
-  const rgrid = Randomless.getGrid(15, [8, 30])
+  Randomless grid
+
+  ```js
+  const rgrid = randomless.getGrid(15, [8, 30])
   console.log(
+    // Transforming array into a string
     rgrid.map((row) => row.map((col) => (col ? '*' : '—')).join('')).join('\n')
   )
   /*
@@ -107,28 +124,33 @@ import Picker from 'randomless/picker'
   ```
 
 - ```ts
-  Randomless.getSequence<T>(count: number, symbols: T[]): T[]
+  randomless.getSequence<T>(count: number, symbols: T[]): T[]
   ```
 
   Produces a random(less) sequence of length, given by `count`, that consists of given symbols.
 
-  ### Comparison
+  **Comparison**
 
   Example with heads and tails from the description of the library:
 
+  "Truly" random distribution
+
   ```js
-  // "Truly" random distribution
   console.log(
+    // Creating array with 10 elements and filling it randomly with 'T' or 'H'
     [...Array(10)].map(() => ['T', 'H'][Math.round(Math.random())]).join('')
   )
   // "HHHHHHTTTT"
+  ```
 
-  // Randomless distribution
-  console.log(Randomless.getSequence(10, ['H', 'T']).join(''))
+  Randomless distribution
+
+  ```js
+  console.log(randomless.getSequence(10, ['H', 'T']).join(''))
   // "HTTHHTHTTT"
   ```
 
-The library also provides a small class that for producing such sequences infinitely
+The library also provides a small class that generates such sequences infinitely
 
 ```ts
 class Picker<T> {
@@ -137,7 +159,7 @@ class Picker<T> {
 }
 ```
 
-Example:
+Example
 
 ```js
 const picker = new Picker(['H', 'T'])

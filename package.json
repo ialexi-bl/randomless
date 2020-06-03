@@ -1,6 +1,6 @@
 {
   "name": "randomless",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Tiny generator that produces \"human\" random numbers",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
