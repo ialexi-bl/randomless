@@ -1,6 +1,6 @@
 {
   "name": "randomless",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Tiny generator that produces \"human\" random numbers",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -8,7 +8,15 @@
     "build": "rollup -c",
     "prepublish": "rollup -c"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ialexi-bl/randomless"
+  },
+  "keywords": [
+    "random",
+    "human-random",
+    "pseudo-random"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
